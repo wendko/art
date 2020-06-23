@@ -1,24 +1,124 @@
-@font-face {
-    font-family: "Indie Flower";
-    src: url("fonts/IndieFlower-Regular.ttf");
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Schoolbell&display=swap');
+:root {
+    --c-outline: #332b23;
+    --c-image-bg: #ffcc9a;
+    --c-link: #ffc400;
+    --c-link-focus: #ffe600;
 }
 
 body {
-    font-family: "Indie Flower";
-    background: rgb(55, 47, 63);
-    color: linen;
+    font-family: 'Schoolbell', 'ZCOOL KuaiLe', cursive;
+    color: var(--c-outline);
     text-align: center;
+    background: repeating-linear-gradient(to bottom, #332b232b 0vh 0.5vh, linen 0.5vh 6vh);
 }
 
-a {
-    color: rgb(155, 132, 255);
+header {
+    margin-bottom: 5vmin;
 }
 
-img {
-    max-height: 50vh;
-    max-width: 90vw;
+footer {
+    margin: 10vmin;
+}
+
+.header-title {
+    letter-spacing: 0.3rem;
+    text-transform: uppercase;
+}
+
+#collection {
+    letter-spacing: 0.15rem;
+    display: flex;
+    font-size: 1.5rem;
+    flex-flow: row wrap;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: auto;
+    max-width: 80vw;
+}
+figcaption {
+    max-width: 50vmin;
+    font-weight: 700;
+}
+@media only screen and (max-width: 800px) {
+    main {
+        max-width: 100vw;
+    }
+    figcaption {
+        max-width: 100vmin;
+    }
+}
+.social-link {
+    color: var(--c-outline);
+    text-decoration: none;
+    background: var(--c-link);
+    letter-spacing: 0.1rem;
+    padding: 0.3rem 0.6rem;
+    box-shadow: 0.5vmin 0.5vmin;
+    border: 0.2rem solid var(--c-outline);
+    display: inline-block;
+}
+
+.social-link:focus, .social-link:hover {
+    background: var(--c-link-focus);
+    transform: translateY(-0.4vmin);
+}
+
+.social-link:active {
+    transform: translateY(0.4vmin);
+}
+
+img, video {
+    max-height: 35vmin;
+    max-width: 50vmin;
+    border: 0.2rem solid var(--c-outline);
+    background: white;
+    margin: 5px;
 }
 
 figure {
-    margin: 20px 0 50px;
+    box-shadow: 0.5vmin 0.5vmin;
+    border: 0.2rem solid var(--c-outline);
+    padding: 2vmin 1vmin 3vmin;
+    background: url(./brownPaper.webp);
+    background-size: cover;
+    color: var(--c-outline);
+    margin: 3vmin;
+    width: fit-content;
+    height: fit-content;
+    transform: var(--fig-transform);
+}
+figure:nth-child(n) {
+    --fig-transform: rotate(-1deg);
+    --fig-tape-transform: translate(20vmin, -5vmin) rotate(-10deg);
+    --fig-tape-bg: repeating-linear-gradient(45deg, #9AA0A8 0% 10%, #BEFFC7 10%  20%);
+}
+figure:nth-child(2n) {
+    --fig-transform: rotate(1deg);
+    --fig-tape-transform: translate(20vmin, -5vmin) rotate(10deg);
+    --fig-tape-bg: radial-gradient(white 20%, #ff5996 30%);
+}
+figure:nth-child(2n)::before {
+    background-size: 1vmin 1vmin;
+}
+figure:nth-child(3n) {
+    --fig-transform: rotate(-2deg);
+    --fig-tape-transform: translate(20vmin, -5vmin) rotate(-5deg);
+    --fig-tape-bg: repeating-linear-gradient(#FDCA40 0% 12%, #3A2D32 12% 18%);
+}
+figure:nth-child(4n) {
+    --fig-transform: rotate(2deg);
+    --fig-tape-transform: translate(20vmin, -5vmin) rotate(15deg);
+    --fig-tape-bg: repeating-linear-gradient(transparent 0 10%, black 10% 12%), 
+        repeating-linear-gradient(90deg, transparent 0 10%, black 10% 12%),
+        white;
+}
+figure::before {
+    content: '';
+    position: absolute;
+    width: 6vmin;
+    height: 8vmin;
+    opacity: 0.7;
+    background: var(--fig-tape-bg);
+    transform: var(--fig-tape-transform);
 }
