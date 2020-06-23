@@ -57,6 +57,7 @@ figcaption {
     box-shadow: 0.5vmin 0.5vmin;
     border: 0.2rem solid var(--c-outline);
     display: inline-block;
+    margin: 2vmin;
 }
 
 .social-link:focus, .social-link:hover {
