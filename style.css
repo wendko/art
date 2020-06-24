@@ -117,8 +117,8 @@ figure:nth-child(4n) {
 figure::before {
     content: '';
     position: absolute;
-    width: 6vmin;
-    height: 8vmin;
+    width: 20%;
+    height: 15%;
     opacity: 0.7;
     background: var(--fig-tape-bg);
     transform: var(--fig-tape-transform);
