@@ -122,12 +122,14 @@ figure > picture:nth-of-type(n + 2) {
 figure,
 figure img,
 figure figcaption,
-figure video {
+figure video,
+figure .gif-container {
     pointer-events: none;
 }
 
 figure img, 
-figure video {
+figure video,
+figure .gif-container {
     width: 100%;
     border: 0.2rem solid var(--c-outline);
     background: white;

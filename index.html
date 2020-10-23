@@ -23,7 +23,14 @@
         import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js';
 
         // components
-        const Video = srcOpt => html`<video loop muted playsinline 
+
+        const isMobile = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Opera M(obi|ini)/.test(
+                            navigator.userAgent
+                        );
+                        
+        const Video = ({srcOpt, srcOriginal, alt}) => isMobile ? 
+        html`<img class="gif-container" loading="lazy" src="${srcOriginal}" alt="${alt}" />`
+        : html`<video loop muted playsinline 
             onmouseleave=${(e) => e.target.pause()}
             onmouseover=${(e) => e.target.play()}>
             ${srcOpt && html`<source src="${srcOpt}" type="video/webm" />`}
@@ -35,7 +42,9 @@
             <img loading="lazy" src="${srcOriginal}" alt: "${alt}" />
         </picture>`;
 
-        const Media = ({srcOpt, srcOriginal, alt, isGIF}) => isGIF ?  Video(srcOpt): Image({srcOpt, srcOriginal, alt});
+        const Media = ({srcOpt, srcOriginal, alt, isGIF}) => isGIF ?  
+            Video({srcOpt, srcOriginal, alt}) 
+            : Image({srcOpt, srcOriginal, alt});
 
         const Figure = ({caption, images}, index) => html`
             <a class="figure-container" href="/" onclick="${ e => {
