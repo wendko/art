@@ -10,7 +10,7 @@ body {
     font-family: 'Schoolbell', 'ZCOOL KuaiLe', cursive;
     color: var(--c-outline);
     text-align: center;
-    background: repeating-linear-gradient(to bottom, #332b232b 0vh 0.5vh, linen 0.5vh 6vh);
+    background: repeating-linear-gradient(to bottom, #270c2b 0vh 0.5vh, rgb(68, 53, 68) 0.5vh 6vh);
 }
 
 header {
@@ -24,21 +24,19 @@ footer {
 .header-title {
     letter-spacing: 0.3rem;
     text-transform: uppercase;
+    color: linen;
 }
 
 #collection {
-    letter-spacing: 0.15rem;
     display: flex;
     font-size: 1.5rem;
     flex-flow: row wrap;
     justify-content: center;
     font-size: 1.5rem;
-    margin: auto;
-    max-width: 80vw;
 }
 figcaption {
-    max-width: 50vmin;
-    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 @media only screen and (max-width: 800px) {
     main {
@@ -65,30 +63,76 @@ figcaption {
     transform: translateY(-0.4vmin);
 }
 
-.social-link:active {
-    transform: translateY(0.4vmin);
+.social-link:focus {
+    outline: 10px solid rgb(67, 242, 255);
 }
 
-img, video {
-    max-height: 35vmin;
-    max-width: 50vmin;
-    border: 0.2rem solid var(--c-outline);
-    background: white;
-    margin: 5px;
+.social-link:active {
+    transform: translateY(0.4vmin);
 }
 
 figure {
     box-shadow: 0.5vmin 0.5vmin;
     border: 0.2rem solid var(--c-outline);
-    padding: 2vmin 1vmin 3vmin;
-    background: url(./brownPaper.webp);
-    background-size: cover;
+    padding: 2vmin;
+    background: rgb(255, 209, 171);
     color: var(--c-outline);
-    margin: 3vmin;
-    width: fit-content;
-    height: fit-content;
-    transform: var(--fig-transform);
+    margin: 0;
+    height: 100%;
 }
+
+figure > picture:nth-of-type(n + 2) {
+    display: none;
+}
+
+.figure-container {
+    text-decoration: none;
+    margin: 10px;
+    width: 150px;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.figure-container:focus {
+    outline: 10px solid rgb(67, 242, 255);
+}
+
+.figure-container:hover {
+    transform: translateY(-0.4vmin);
+    box-shadow: 8px 8px black;
+}
+
+.figure-container:hover > figure {
+    background: rgb(255, 234, 217);
+}
+
+.figure-container.full-width > figure > picture:nth-of-type(n + 2)  {
+    display: block;
+}
+
+.figure-container.full-width {
+    width: auto;
+    height: auto;
+}
+
+.figure-container.full-width > figure {
+    width: fit-content;
+}
+
+figure,
+figure img,
+figure figcaption,
+figure video {
+    pointer-events: none;
+}
+
+figure img, 
+figure video {
+    width: 100%;
+    border: 0.2rem solid var(--c-outline);
+    background: white;
+}
+
 figure:nth-child(n) {
     --fig-transform: rotate(-1deg);
     --fig-tape-transform: translate(20vmin, -5vmin) rotate(-10deg);
@@ -113,13 +157,4 @@ figure:nth-child(4n) {
     --fig-tape-bg: repeating-linear-gradient(transparent 0 10%, black 10% 12%), 
         repeating-linear-gradient(90deg, transparent 0 10%, black 10% 12%),
         white;
-}
-figure::before {
-    content: '';
-    position: absolute;
-    width: 20%;
-    height: 15%;
-    opacity: 0.7;
-    background: var(--fig-tape-bg);
-    transform: var(--fig-tape-transform);
 }

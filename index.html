@@ -9,9 +9,9 @@
 </head>
 <body>
     <header>
-        <h1 class="header-title">wendy's drawing corner</h1>
-        <a class="social-link" href="https://wendko.com" target="_blank">wendko@website</a>
-        <a class="social-link" href="https://twitter.com/wendko" target="_blank">wendko@Twitter</a>
+        <h1 class="header-title">wendko's drawing corner</h1>
+        <a class="social-link" href="https://wendko.com" target="_blank">about</a>
+        <a class="social-link" href="https://twitter.com/wendko" target="_blank">twitter</a>
     </header>
     <main>
         <div id="collection"></div>
@@ -23,23 +23,74 @@
         import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js';
 
         // components
-        const Image = ({srcOpt, srcOriginal, alt, isGIF}) => isGIF ? html`<video autoplay loop muted playsinline>
+        const Video = srcOpt => html`<video loop muted playsinline 
+            onmouseleave=${(e) => e.target.pause()}
+            onmouseover=${(e) => e.target.play()}>
             ${srcOpt && html`<source src="${srcOpt}" type="video/webm" />`}
-        </video>` : html`<picture>
+        </video>`;
+
+        const Image = ({srcOpt, srcOriginal, alt}) => html`<picture>
             ${srcOpt && html`<source srcset="${srcOpt}" />`}
             ${srcOriginal && html`<source srcset="${srcOriginal}" />`}
             <img loading="lazy" src="${srcOriginal}" alt: "${alt}" />
         </picture>`;
 
-         const Figure = ({caption, images}) => html`
-            <figure>
-                ${images && images.length && images.map(i => Image(i))}
-                <figcaption>${caption}</figcaption>
-            </figure>
+        const Media = ({srcOpt, srcOriginal, alt, isGIF}) => isGIF ?  Video(srcOpt): Image({srcOpt, srcOriginal, alt});
+
+        const Figure = ({caption, images}, index) => html`
+            <a class="figure-container" href="/" onclick="${ e => {
+                    e.preventDefault();
+                    const element = e.target;
+                    element.classList.toggle("full-width");
+                    element.scrollIntoView();
+                    const vid = element.querySelector('video');
+                    if (!vid) {
+                        return;
+                    }
+                    if (vid.paused) {
+                        vid.play();
+                    } else {
+                        vid.pause();
+                    }
+                }
+            }">
+                <figure>
+                    <figcaption>${caption}</figcaption>
+                    ${images && images.length && images.map(Media)}
+                </figure>
+            </a>
         `;
 
         // data
         const collection = [
+            {
+                caption: "Wat",
+                images: [{srcOriginal: "assets/wat.png", alt: "girl motioning what"}]
+            },
+            {
+                caption: "Singing boy",
+                images: [{isGIF: true, srcOpt: "assets/singing_boy.webm", srcOriginal: "assets/singing_boy.gif", alt: "Singing boy on computer"}]
+            },
+            {
+                caption: "Jamack on a dragonfly",
+                images: [{srcOriginal: "assets/jamack_dragonfly.png", alt: "Jamack on a dragonfly"}]
+            },
+            {
+                caption: "Fairy girl 2",
+                images: [{srcOriginal: "assets/fairy_girl_2.png", alt: "fairy girl"}]
+            },
+            {
+                caption: "Dog on phone",
+                images: [{srcOriginal: "assets/dog_phone.png", alt: "dog on phone"}]
+            },
+            {
+                caption: "Girl with computer",
+                images: [{srcOriginal: "assets/computer_girl.png", alt: "girl with computer"}]
+            },
+            {
+                caption: "Chicken soup",
+                images: [{srcOriginal: "assets/chickensoup.png", alt: "chicken soup"}]
+            },
             {
                 caption: "Fairy",
                 images: [{srcOpt: "assets/fairy.webp", srcOriginal: "assets/fairy.png", alt: "fairy"}]
@@ -148,7 +199,7 @@
         ];
 
         // render
-        const renderHtml = html`${collection.map(c => Figure({...c}))}`;
+        const renderHtml = html`${collection.map(Figure)}`;
         render(renderHtml, document.getElementById('collection'));
     </script>
 </body>
