@@ -23,7 +23,6 @@
         import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js';
 
         // components
-
         const isMobile = /Mobile|iP(hone|od|ad)|Android|BlackBerry|IEMobile|Opera M(obi|ini)/.test(
                             navigator.userAgent
                         );
@@ -42,7 +41,7 @@
             <img loading="lazy" src="${srcOriginal}" alt: "${alt}" />
         </picture>`;
 
-        const Media = ({srcOpt, srcOriginal, alt, isGIF}) => isGIF ?  
+        const Media = ({srcOpt, srcOriginal, alt}) => /gif|mp4/.test(srcOriginal) ?  
             Video({srcOpt, srcOriginal, alt}) 
             : Image({srcOpt, srcOriginal, alt});
 
@@ -73,12 +72,28 @@
         // data
         const collection = [
             {
+                caption: "Pyjama girl",
+                images: [{srcOriginal: "assets/pyjama_girl.png", alt: "Pyjama girl"}]
+            },
+            {
+                caption: "Migration",
+                images: [{srcOriginal: "assets/migration.png", alt: "data migration to postgres"}]
+            },
+            {
+                caption: "Big hat girl",
+                images: [{srcOriginal: "assets/girl_with_big_hat.png", alt: "girl with big hat"}]
+            },
+            {
+                caption: "Breakfast",
+                images: [{srcOriginal: "assets/breakfast.png", alt: "breakfast bread and coffee fist bump"}]
+            },
+            {
                 caption: "Wat",
                 images: [{srcOriginal: "assets/wat.png", alt: "girl motioning what"}]
             },
             {
                 caption: "Singing boy",
-                images: [{isGIF: true, srcOpt: "assets/singing_boy.webm", srcOriginal: "assets/singing_boy.gif", alt: "Singing boy on computer"}]
+                images: [{srcOpt: "assets/singing_boy.webm", srcOriginal: "assets/singing_boy.gif", alt: "Singing boy on computer"}]
             },
             {
                 caption: "Jamack on a dragonfly",
@@ -110,17 +125,21 @@
             },
             {
                 caption: "Is it heavy?",
-                images: [{isGIF: true, srcOpt: "assets/heavy.webm", srcOriginal: "assets/heavy.gif", alt: "guy and girl carrying heavy stuff"}]
+                images: [{srcOpt: "assets/heavy.webm", srcOriginal: "assets/heavy.gif", alt: "guy and girl carrying heavy stuff"}]
             },
             {
                 caption: "Don't cry",
-                images: [{isGIF: true, srcOpt: "assets/cry.webm", srcOriginal: "assets/cry.gif", alt: "a cartoon about crying"}]
+                images: [{srcOpt: "assets/cry.webm", srcOriginal: "assets/cry.gif", alt: "a cartoon about crying"}]
             },
             {
                 caption: "Tapir (for Engineers My)",
-                images: [{srcOpt: "assets/tapir.webp", srcOriginal: "assets/tapir.png", alt: "tapir"},
-                        {srcOpt: "assets/tapir-engineersmy.webp", srcOriginal: "assets/tapir-engineersmy.png", alt: "tapir with engineers.my text"},
-                        {srcOpt: "assets/tapir-devkami.webp", srcOriginal: "assets/tapir-devkami.png", alt: "tapir with devkami text"}]
+                images: [
+                    {srcOpt: "assets/tapir.webp", srcOriginal: "assets/tapir.png", alt: "tapir"},
+                    {srcOpt: "assets/tapir-engineersmy.webp", srcOriginal: "assets/tapir-engineersmy.png", alt: "tapir with engineers.my text"},
+                    {srcOpt: "assets/tapir-devkami.webp", srcOriginal: "assets/tapir-devkami.png", alt: "tapir with devkami text"},
+                    {srcOriginal: "assets/tapir_malaysia_day_2.png", alt: "tapir with devkami text"},
+                    {srcOriginal: "assets/tapir_malaysia_day_2.png", alt: "tapir with devkami text"}
+                ]
             },
             {
                 caption: "Egg on nasi lemak",
@@ -136,59 +155,59 @@
             },
             { 
                 caption: "Learning Japanese",
-                images: [{isGIF: true, srcOpt: "assets/aiueo.webm", srcOriginal: "assets/aiueo.gif", alt: "learning japanese"}]
+                images: [{srcOpt: "assets/aiueo.webm", srcOriginal: "assets/aiueo.gif", alt: "learning japanese"}]
             },
             { 
                 caption: "Chill Time AMA (for KL React)",
-                images: [{isGIF: true, srcOpt: "assets/ending_kl_react.webm", srcOriginal: "assets/ending_kl_react.gif", alt: "chill time AMA"}]
+                images: [{srcOpt: "assets/ending_kl_react.webm", srcOriginal: "assets/ending_kl_react.gif", alt: "chill time AMA"}]
             },
             { 
                 caption: "加油! (Good luck in mandarin)",
-                images: [{isGIF: true, srcOpt: "assets/jiayou.webm", srcOriginal: "assets/jiayou.gif", alt: "good luck in mandarin"}]
+                images: [{srcOpt: "assets/jiayou.webm", srcOriginal: "assets/jiayou.gif", alt: "good luck in mandarin"}]
             },
             { 
                 caption: "One of those days",
-                images: [{isGIF: true, srcOpt: "assets/melt.webm", srcOriginal: "assets/melt.gif", alt: "girl melting"}]
+                images: [{srcOpt: "assets/melt.webm", srcOriginal: "assets/melt.gif", alt: "girl melting"}]
             },
             { 
                 caption: "I'm cooking more in quarantine",
-                images: [{isGIF: true, srcOpt: "assets/quarantine_cooking.webm", srcOriginal: "assets/quarantine_cooking.gif", alt: "cooking in quarantine"}]
+                images: [{srcOpt: "assets/quarantine_cooking.webm", srcOriginal: "assets/quarantine_cooking.gif", alt: "cooking in quarantine"}]
             },
             { 
                 caption: "What do rice crackers do in quarantine?",
-                images: [{isGIF: true, srcOpt: "assets/quarantine_crackers_2.webm", srcOriginal: "assets/quarantine_crackers_2.gif", alt: "rice crackers in quarantine"}]
+                images: [{srcOpt: "assets/quarantine_crackers_2.webm", srcOriginal: "assets/quarantine_crackers_2.gif", alt: "rice crackers in quarantine"}]
             },
             { 
                 caption: "Satay day",
-                images: [{isGIF: true, srcOpt: "assets/satayday.webm", srcOriginal: "assets/satayday.gif", alt: "saturday, satay day"}]
+                images: [{srcOpt: "assets/satayday.webm", srcOriginal: "assets/satayday.gif", alt: "saturday, satay day"}]
             },
             { 
                 caption: "Starting soon v1 (for KL React)",
-                images: [{isGIF: true, srcOpt: "assets/starting_soon_kl_react_1.webm", srcOriginal: "assets/starting_soon_kl_react_1.gif", alt: "starting soon v1"}]
+                images: [{srcOpt: "assets/starting_soon_kl_react_1.webm", srcOriginal: "assets/starting_soon_kl_react_1.gif", alt: "starting soon v1"}]
             },
             { 
                 caption: "Starting soon v2 (for KL React)",
-                images: [{isGIF: true, srcOpt: "assets/starting_soon_kl_react_2.webm", srcOriginal: "assets/starting_soon_kl_react_2.gif", alt: "starting soon v2"}]
+                images: [{srcOpt: "assets/starting_soon_kl_react_2.webm", srcOriginal: "assets/starting_soon_kl_react_2.gif", alt: "starting soon v2"}]
             },
             { 
                 caption: "Red is not a good color on you",
-                images: [{isGIF: true, srcOpt: "assets/terminal_error.webm", srcOriginal: "assets/terminal_error.gif", alt: "terminal error"}]
+                images: [{srcOpt: "assets/terminal_error.webm", srcOriginal: "assets/terminal_error.gif", alt: "terminal error"}]
             },
             { 
                 caption: "Terrapin siblings",
-                images: [{isGIF: true, srcOpt: "assets/terrapin_siblings.webm", srcOriginal: "assets/terrapin_siblings.gif", alt: "terrapin siblings"}]
+                images: [{srcOpt: "assets/terrapin_siblings.webm", srcOriginal: "assets/terrapin_siblings.gif", alt: "terrapin siblings"}]
             },
             { 
                 caption: "Bye bye!",
-                images: [{isGIF: true, srcOpt: "assets/byebye.webm", srcOriginal: "assets/byebye.gif", alt: "girl waving bye"}]
+                images: [{srcOpt: "assets/byebye.webm", srcOriginal: "assets/byebye.gif", alt: "girl waving bye"}]
             },
             { 
                 caption: "Friendly fish",
-                images: [{isGIF: true, srcOpt: "assets/fish.webm", srcOriginal: "assets/fish.gif", alt: "friendly fish"}]
+                images: [{srcOpt: "assets/fish.webm", srcOriginal: "assets/fish.gif", alt: "friendly fish"}]
             },
             { 
                 caption: "Heart 💘",
-                images: [{isGIF: true, srcOpt: "assets/heart.webm", srcOriginal: "assets/heart.gif", alt: "heart"}]
+                images: [{srcOpt: "assets/heart.webm", srcOriginal: "assets/heart.gif", alt: "heart"}]
             },
             { 
                 caption: "React Durian (for KL React)",
