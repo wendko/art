@@ -91,6 +91,7 @@ figure > picture:nth-of-type(n + 2) {
     width: 150px;
     height: fit-content;
     overflow: hidden;
+    max-width: 500px;
 }
 
 .figure-container:focus {
